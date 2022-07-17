@@ -15,7 +15,7 @@ long long MaxPairwiseProduct(const std::vector<int> &numbers)
     int max_ind2 = -1;
     for (int j = 0; j < n; ++j)
     {
-        if ((max_ind2 == -1) || (numbers[j] > numbers[max_ind2]))
+        if ((j != max_ind1) && ((max_ind2 == -1) || (numbers[j] > numbers[max_ind2])))
             max_ind2 = j;
     }
 
