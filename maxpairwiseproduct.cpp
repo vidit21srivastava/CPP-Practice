@@ -2,19 +2,24 @@
 #include <vector>
 #include <algorithm>
 
-int MaxPairwiseProduct(const std::vector<int> &numbers)
+long long MaxPairwiseProduct(const std::vector<int> &numbers)
 {
-    int max_product = 0;
+    long long max_product = 0;
     int n = numbers.size();
-
-    for (int first = 0; first < n; ++first)
+    int max_ind1 = -1;
+    for (int i = 0; i < n; ++i)
     {
-        for (int second = first + 1; second < n; ++second)
-        {
-            max_product = std::max(max_product,
-                                   numbers[first] * numbers[second]);
-        }
+        if ((max_ind1 == -1) || (numbers[i] > numbers[max_ind1]))
+            max_ind1 = i;
     }
+    int max_ind2 = -1;
+    for (int j = 0; j < n; ++j)
+    {
+        if ((max_ind2 == -1) || (numbers[j] > numbers[max_ind2]))
+            max_ind2 = j;
+    }
+
+    max_product = numbers[max_ind1] * numbers[max_ind2];
 
     return max_product;
 }
@@ -29,6 +34,7 @@ int main()
         std::cin >> numbers[i];
     }
 
-    std::cout << MaxPairwiseProduct(numbers) << "\n";
+    long long result = MaxPairwiseProduct(numbers);
+    std::cout << result << "\n";
     return 0;
 }
